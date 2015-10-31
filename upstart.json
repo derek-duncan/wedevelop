@@ -1,0 +1,11 @@
+{
+  "name"             : "wedevelop",
+  "script"           : "server.js",
+  "watch"            : ["server.js", "app.js", "config.js", "apps"],
+  "ignore_watch"     : ["node_modules", ".git"],
+  "env": {
+    "NODE_PATH": ".",
+    "NODE_ENV": "development"
+  },
+  "node-args": "--harmony"
+}
