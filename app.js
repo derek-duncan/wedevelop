@@ -1,27 +1,28 @@
 'use strict';
 
 // Dependencies
-import koa from 'koa';
+import Koa from 'koa';
 import logger from 'koa-logger';
 import mount from 'koa-mount';
+import convert from 'koa-convert';
+import co from 'co';
 import json from 'koa-json';
-import bodyparser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 import path from 'path';
 
 import config from './config.js';
 
 // Sub apps
-import adminApp from './apps/admin';
-import apiApp from './apps/api';
+// import adminApp from './apps/admin';
+// import apiApp from './apps/api';
+// import blogApp from './apps/blog';
 import coreApp from './apps/core';
-import blogApp from './apps/blog';
 
 // Main app
-const app = koa();
+const app = new Koa();
 
 // Connect to mongodb
-const connect = function () {
+const connect = () => {
   const options = {
     server: {
       socketOptions: {
@@ -36,15 +37,14 @@ mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
 // Setup Koa modules
-app.use(logger());
-app.use(bodyparser());
-app.use(json());
+app.use(convert(logger()));
+app.use(convert(json()));
 
 // Mount sub apps
 app.use(mount('/', coreApp));
-app.use(mount('/posts', blogApp));
-app.use(mount('/v1', apiApp));
-app.use(mount('/admin', adminApp));
+// app.use(mount('/posts', blogApp));
+// app.use(mount('/v1', apiApp));
+// app.use(mount('/admin', adminApp));
 
 app.listen(config.koa.port);
 console.log(`listening on port ${config.koa.port}`);

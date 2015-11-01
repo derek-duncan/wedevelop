@@ -14,11 +14,11 @@ let PostSchema = new Schema({
   updated_at: { type: Date, }
 });
 
-PostSchema.pre('save', next => {
-  let self = this;
-  this.machine_name = this.name.replace(/[^a-zA-Z0-9]/g, '').replace(' ', '-');
-  return next();
-});
+// PostSchema.pre('save', function(next) {
+//   let self = this;
+//   self.machine_name = self.name.replace(/[^a-zA-Z0-9]/g, '').replace(' ', '-');
+//   return next();
+// });
 
 export default mongoose.model('Post', PostSchema);
 

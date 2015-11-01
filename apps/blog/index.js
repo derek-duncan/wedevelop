@@ -2,7 +2,6 @@
 
 import koa from 'koa';
 import compress from 'koa-compress';
-import serve from 'koa-static';
 import path from 'path';
 
 import postsController from './posts/postsController.js';

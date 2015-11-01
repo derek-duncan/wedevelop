@@ -1,15 +1,17 @@
 // Dependencies
 import Router from 'koa-router';
+import koaBody from 'koa-body';
 import config from '../../../config.js';
 import render from '../lib/render.js';
 import Post from './postsModel.js';
 
 const router = new Router();
+const bodyParser = koaBody();
 
 // All routes are mounted with the /posts prefix
 router.get('/', list);
 router.get('/:postId', fetch);
-router.post('/', add);
+router.post('/', bodyParser, add);
 
 export default router;
 
@@ -40,10 +42,10 @@ function *fetch(next) {
  * Add a post
  */
 function *add(next) {
+  console.log(this.request.body);
   let body = this.request.body;
-  let newPost = new Post({
-    name: body.name
-  });
+  let newPost = new Post();
+  newPost.name = body.name;
   try {
     yield newPost.save();
     this.redirect('/');
