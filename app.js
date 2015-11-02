@@ -7,6 +7,7 @@ import mount from 'koa-mount';
 import convert from 'koa-convert';
 import co from 'co';
 import json from 'koa-json';
+import compress from 'koa-compress';
 import mongoose from 'mongoose';
 import path from 'path';
 
@@ -15,7 +16,7 @@ import config from './config.js';
 // Sub apps
 // import adminApp from './apps/admin';
 // import apiApp from './apps/api';
-// import blogApp from './apps/blog';
+import blogApp from './apps/blog';
 import coreApp from './apps/core';
 
 // Main app
@@ -42,9 +43,11 @@ app.use(convert(json()));
 
 // Mount sub apps
 app.use(mount('/', coreApp));
-// app.use(mount('/posts', blogApp));
+app.use(mount('/posts', blogApp));
 // app.use(mount('/v1', apiApp));
 // app.use(mount('/admin', adminApp));
+
+app.use(convert(compress()));
 
 app.listen(config.koa.port);
 console.log(`listening on port ${config.koa.port}`);

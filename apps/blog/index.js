@@ -1,17 +1,15 @@
 'use strict';
 
-import koa from 'koa';
-import compress from 'koa-compress';
-import path from 'path';
+import Koa from 'koa';
+import co from 'co';
+import convert from 'koa-convert';
 
 import postsController from './posts/postsController.js';
 
-const app = koa();
+const app = new Koa();
 
 // Routes
-app.use(postsController.routes());
-
-// Compress
-app.use(compress());
+let postsRoutes = postsController.routes();
+app.use(co.wrap(postsRoutes));
 
 export default app;

@@ -1,26 +1,28 @@
 // Dependencies
-import Router from 'koa-router';
-import koaBody from 'koa-body';
+import co from 'co';
+import convert from 'koa-convert';
+import Router from 'koa-66';
+import parse from 'co-body';
+
 import config from '../../../config.js';
 import render from '../lib/render.js';
 import Post from './postsModel.js';
 
 const router = new Router();
-const bodyParser = koaBody();
 
 // All routes are mounted with the /posts prefix
-router.get('/', list);
-router.get('/:postId', fetch);
-router.post('/', bodyParser, add);
+router.get('/', co.wrap(list));
+router.get('/:postId', co.wrap(fetch));
+router.post('/', co.wrap(add));
 
 export default router;
 
 /**
  * Post listing
  */
-function *list(next) {
+function *list(ctx, next) {
   let posts = yield Post.find({}).exec();
-  this.body = yield render('list', {
+  ctx.body = yield render('list', {
     posts: posts
   });
 }
@@ -28,12 +30,12 @@ function *list(next) {
 /**
  * Find a post by id
  */
-function *fetch(next) {
-  let postId = this.params.postId;
+function *fetch(ctx, next) {
+  let postId = ctx.params.postId;
   let post = yield Post.findOne({ machine_name: postId }).exec();
-  if (!post) this.throw(404);
+  if (!post) ctx.throw(404);
 
-  this.body = yield render('post', {
+  ctx.body = yield render('post', {
     post: post
   });
 }
@@ -41,15 +43,14 @@ function *fetch(next) {
 /**
  * Add a post
  */
-function *add(next) {
-  console.log(this.request.body);
-  let body = this.request.body;
+function *add(ctx, next) {
+  let body = yield parse.form(ctx);
   let newPost = new Post();
   newPost.name = body.name;
   try {
     yield newPost.save();
-    this.redirect('/');
+    ctx.redirect('/');
   } catch(err) {
-    this.throw(err);
+    ctx.throw(err);
   }
 }
