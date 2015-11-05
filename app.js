@@ -10,6 +10,8 @@ import json from 'koa-json';
 import compress from 'koa-compress';
 import mongoose from 'mongoose';
 import path from 'path';
+import http from 'http';
+import IOServer from 'socket.io';
 
 import config from './config.js';
 
@@ -49,7 +51,16 @@ app.use(mount('/posts', blogApp));
 
 app.use(convert(compress()));
 
-app.listen(config.koa.port);
+const server = http.createServer(app.callback());
+
+const io = new IOServer(server);
+io.on('connection', socket => {
+  console.log('someone connected to me');
+  socket.emit('news', 'made it');
+});
+
+// Start the server
+server.listen(config.koa.port);
 console.log(`listening on port ${config.koa.port}`);
 
 export default app;
