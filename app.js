@@ -10,8 +10,7 @@ import json from 'koa-json';
 import compress from 'koa-compress';
 import mongoose from 'mongoose';
 import path from 'path';
-import http from 'http';
-import IOServer from 'socket.io';
+import mqtt from 'mqtt';
 
 import config from './config.js';
 
@@ -51,16 +50,19 @@ app.use(mount('/posts', blogApp));
 
 app.use(convert(compress()));
 
-const server = http.createServer(app.callback());
+const client = mqtt.connect(config.mqtt.url);
 
-const io = new IOServer(server);
-io.on('connection', socket => {
-  console.log('someone connected to me');
-  socket.emit('news', 'made it');
+client.on('connect', function () {
+  client.subscribe('presence');
+  client.subscribe('core');
+});
+
+client.on('message', function (topic, message) {
+  console.log(topic, message.toString());
 });
 
 // Start the server
-server.listen(config.koa.port);
+app.listen(config.koa.port);
 console.log(`listening on port ${config.koa.port}`);
 
 export default app;

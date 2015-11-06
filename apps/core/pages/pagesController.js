@@ -2,14 +2,21 @@
 import co from 'co';
 import Router from 'koa-66';
 import render from '../lib/render.js';
-import config from '../../../config.js';
+import mqttClient from '../lib/mqttClient.js';
 
-const router = new Router();
+const client = mqttClient();
 
-router.get('/', co.wrap(home));
+function pagesController(app) {
+  const router = new Router();
 
-export default router;
+  router.get('/', co.wrap(home));
+
+  return router;
+}
+
+export default pagesController;
 
 function *home(ctx, next) {
+  client.publish('core', 'get:home');
   ctx.body = yield render('home');
 }

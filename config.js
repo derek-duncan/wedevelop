@@ -4,5 +4,8 @@ export default {
   },
   mongodb: {
     url: 'localhost:27017/wedevelop-dev'
+  },
+  mqtt: {
+    url: 'mqtt://localhost:1883'
   }
 };

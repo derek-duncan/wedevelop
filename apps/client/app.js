@@ -1,14 +1,18 @@
 import Koa from 'koa';
-import io from 'socket.io-client';
+import mqtt from 'mqtt';
+import config from '../../config.js';
 
 const app = new Koa();
-const socket = io('http://localhost:3000');
 
-socket.on('connect', function() {
-  console.log('connected to io server');
+const client = mqtt.connect(config.mqtt.url);
+client.on('connect', function () {
+  client.publish('presence', 'Hello mqtt');
+
+  client.subscribe('posts');
 });
-socket.on('news', data => {
-  console.log(data);
+
+client.on('message', function(topic, message) {
+  console.log(topic, message.toString());
 });
 
 app.listen(3001);

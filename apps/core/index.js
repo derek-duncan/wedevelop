@@ -9,7 +9,7 @@ import pagesController from './pages/pagesController.js';
 const app = new Koa();
 
 // Routes
-let pagesRoutes = pagesController.routes();
+let pagesRoutes = pagesController(app).routes();
 app.use(co.wrap(pagesRoutes));
 
 // Serve static files
