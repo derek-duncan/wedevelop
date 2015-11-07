@@ -46,7 +46,8 @@ function *fetch(ctx, next) {
 function *add(ctx, next) {
   let body = yield parse.form(ctx);
   let newPost = new Post();
-  newPost.name = body.name;
+  newPost.title = body.title;
+  newPost.body = body.body;
   try {
     yield newPost.save();
     ctx.redirect('/');

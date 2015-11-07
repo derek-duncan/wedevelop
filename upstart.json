@@ -2,7 +2,7 @@
   "name"             : "wedevelop",
   "script"           : "server.js",
   "watch"            : ["server.js", "app.js", "config.js", "apps"],
-  "ignore_watch"     : ["node_modules", ".git"],
+  "ignore_watch"     : ["node_modules", ".git", "views", "public"],
   "env": {
     "NODE_PATH": ".",
     "NODE_ENV": "development"

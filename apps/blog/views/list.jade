@@ -1,5 +1,8 @@
-h2 post list
-if posts
-  each post in posts
-    if post.name
-      h5= post.name
+extends ./templates/default.jade
+
+block body
+  h2 post list
+  if posts
+    each post in posts
+      if post.title
+        p= post.title

@@ -9,16 +9,17 @@ const Schema = mongoose.Schema;
 let PostSchema = new Schema({
   _id: { type: String, default: shortid.generate },
   machine_name: { type: String },
-  name: { type: String },
+  title: { type: String },
+  body: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, }
 });
 
-// PostSchema.pre('save', function(next) {
-//   let self = this;
-//   self.machine_name = self.name.replace(/[^a-zA-Z0-9]/g, '').replace(' ', '-');
-//   return next();
-// });
+PostSchema.pre('save', function(next) {
+  let self = this;
+  self.machine_name = self.title.replace(/[^a-zA-Z0-9]/g, '').replace(' ', '-');
+  return next();
+});
 
 export default mongoose.model('Post', PostSchema);
 
