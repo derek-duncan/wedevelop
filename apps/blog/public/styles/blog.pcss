@@ -1,13 +1,33 @@
-@import 'normalize.css';
-
 :root {
   /* Colors */
-  --primaryColor: #a5eee1;
+  --primaryColor: #ff0097;
+  --darkPrimaryColor: #a70063;
   --textColor: #333;
+  --lightTextColor: #878787;
+
+  --greyColor: #888;
+  --lightGreyColor: #ddd;
 
   /* Fonts */
   --sansFont: 'Khula', sans-serif;
   --serifFont: 'Lora', serif;
+
+  /* Sizes */
+  --maxNavWidth: 80%;
+  --maxContentWidth: 62rem;
+}
+
+@import 'normalize.css';
+@import './_universal.pcss';
+@import './_animations.pcss';
+@import './_navigation.pcss';
+@import './_posts.pcss';
+
+/* Pages */
+@import './pages/_home.pcss';
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -15,7 +35,27 @@ html {
 }
 
 body {
-  background-color: #fefefe;
+  position: relative;
   font: 1.6rem var(--serifFont);
   color: var(--textColor);
+  background-color: #fff;
+}
+
+.top-bar {
+
+  &::before {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--primaryColor);
+    animation: 0.75s 0.25s expandBar ease forwards;
+    content: '';
+  }
+}
+
+.mainContainer {
+  max-width: var(--maxContentWidth);
+  width: 100%;
+  margin: 4rem auto 0;
 }

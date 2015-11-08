@@ -22,6 +22,10 @@ export default router;
  */
 function *list(ctx, next) {
   let posts = yield Post.find({}).exec();
+  posts = posts.map(post => {
+    post.body = post.body.substring(0, 300) + '...';
+    return post;
+  });
   ctx.body = yield render('list', {
     posts: posts
   });

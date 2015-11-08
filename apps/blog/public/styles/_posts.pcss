@@ -1,0 +1,43 @@
+.postList {
+  margin: 0;
+  padding: 0;
+}
+
+.postList-item {
+  margin: 0;
+  list-style: none;
+
+  &:not(:only-child) {
+    padding: 4rem 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.postList-title {
+  margin: 0;
+  font: 700 4.2rem/4.6rem var(--serifFont);
+}
+
+.postList-blurb {
+  margin: 3rem 0 0;
+  font-size: 1.8rem;
+  line-height: 3rem;
+}
+
+.postList-link {
+  display: inline-block;
+  margin: 1.4rem 0 0;
+  font: 2rem var(--sansFont);
+  text-decoration: none;
+  color: var(--primaryColor);
+  transition: color 0.3s;
+  &:hover {
+    color: var(--darkPrimaryColor);
+  }
+}

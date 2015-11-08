@@ -1,8 +1,12 @@
 extends ./templates/default.jade
 
 block body
-  h2 post list
-  if posts
-    each post in posts
-      if post.title
-        p= post.title
+  main.mainContainer.page.page-home
+    if posts
+      ul.postList
+        each post in posts
+          li.postList-item.postList-item--hero
+            h2.postList-title.u-rule.u-rule--bottom= post.title
+            div.postList-blurb= post.body
+            a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
+    hr.u-separator

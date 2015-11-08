@@ -17,7 +17,7 @@ let PostSchema = new Schema({
 
 PostSchema.pre('save', function(next) {
   let self = this;
-  self.machine_name = self.title.replace(/[^a-zA-Z0-9]/g, '').replace(' ', '-');
+  self.machine_name = self.title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/ /g, '-').toLowerCase() + '-' + self._id;
   return next();
 });
 

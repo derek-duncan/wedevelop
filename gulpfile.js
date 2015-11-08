@@ -12,8 +12,15 @@ var path = require('path');
 var apps = [{
   name: 'blog',
   styles: {
-    src: ['./apps/blog/public/styles/**/*.pcss', '!./apps/blog/public/styles/build/*'],
-    dest: './apps/blog/public/styles/build'
+    src: [
+      './apps/blog/public/styles/**/[^_]*.pcss',
+      '!./apps/blog/public/styles/build/*.css'
+    ],
+    dest: './apps/blog/public/styles/build',
+    watch: [
+      './apps/blog/public/styles/**/*.pcss',
+      '!./apps/blog/public/styles/build/*.css'
+    ]
   },
   views: {
     src: './apps/blog/views/**/*.jade'
@@ -40,9 +47,6 @@ gulp.task('styles', function () {
   for (var i = 0; i < apps.length; ++i) {
     var app = apps[i];
     stylesTask(app);
-
-    gulp.watch(app.styles.src, ['styles']);
-    gulp.watch(app.views.src).on('change', browserSync.reload);
   }
 });
 
@@ -53,4 +57,10 @@ gulp.task('default', ['styles'], function() {
     host: 'wedevelop.dev',
     port: 3000
   });
+
+  for (var i = 0; i < apps.length; ++i) {
+    var app = apps[i];
+    gulp.watch(app.styles.watch, ['styles']);
+    gulp.watch(app.views.src).on('change', browserSync.reload);
+  }
 });

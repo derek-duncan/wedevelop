@@ -43,7 +43,6 @@
     "number-zero-length-no-unit": 2,
     "property-no-vendor-prefix": 2,
     "rule-no-shorthand-property-overrides": 2,
-    "rule-nested-empty-line-before": [ 2, "always" ],
     "rule-non-nested-empty-line-before": [ 2, "always" ],
     "rule-trailing-semicolon": [ 2, "always" ],
     "selector-combinator-space-after": [ 2, "always" ],
