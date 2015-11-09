@@ -15,6 +15,9 @@
   /* Sizes */
   --maxNavWidth: 80%;
   --maxContentWidth: 62rem;
+
+  /* Media Queries */
+  @custom-media --min-medium (min-width: 32em);
 }
 
 @import 'normalize.css';
@@ -22,6 +25,7 @@
 @import './_animations.pcss';
 @import './_navigation.pcss';
 @import './_posts.pcss';
+@import './_blocks.pcss';
 
 /* Pages */
 @import './pages/_home.pcss';
@@ -57,5 +61,5 @@ body {
 .mainContainer {
   max-width: var(--maxContentWidth);
   width: 100%;
-  margin: 4rem auto 0;
+  margin: 4rem auto;
 }

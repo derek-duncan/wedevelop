@@ -1,0 +1,86 @@
+.featureBlock {
+
+}
+
+.featureBlock--normal {
+  text-align: center;
+}
+
+.featureBlock-title {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  font: 3.8rem var(--sansFont);
+  color: var(--lightTextColor);
+}
+
+.featureBlock-tagline {
+  margin: 0;
+  padding: 0;
+  font: 1.6rem var(--serifFont);
+}
+
+.featureBlock-body {
+  margin: 3rem 0 0;
+}
+
+.authorFeatures {
+  display: table;
+  width: 100%;
+  padding: 2rem 0 0;
+}
+
+.authorFeature {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  @media (--min-medium) {
+    display: table-cell;
+    width: 20%;
+    padding: 0;
+  }
+}
+
+.authorFeature-avatar {
+  position: relative;
+  display: block;
+  margin: 0 auto 2rem;
+
+  .avatar-inner {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    width: calc(10rem + 4rem); /* Account for the border size */
+    height: 10rem;
+    border-left: 2rem solid #fff;
+    border-right: 2rem solid #fff;
+    background-color: var(--lightGreyColor);
+    border-radius: 50%;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: 5;
+    bottom: 2rem;
+    left: 0;
+    display: block;
+    width: 80%;
+    height: 1px;
+    margin: 0 0 0 10%;
+    background-color: var(--primaryColor);
+    content: '';
+  }
+}
+
+.authorFeature-name {
+  margin: 0;
+  padding: 0;
+  font: 700 3rem/1.1 var(--sansFont);
+}
+
+.authorFeature-description {
+  margin: 0;
+  padding: 0;
+}

@@ -2,11 +2,35 @@ extends ./templates/default.jade
 
 block body
   main.mainContainer.page.page-home
-    if posts
-      ul.postList
-        each post in posts
-          li.postList-item.postList-item--hero
-            h2.postList-title.u-rule.u-rule--bottom= post.title
-            div.postList-blurb= post.body
-            a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
+    article.featureBlock.featureBlock--hero
+      if posts
+        ul.postList
+          each post in posts
+            li.postList-item.postList-item--hero
+              h2.postList-title.u-rule.u-rule--bottom= post.title
+              div.postList-blurb= post.body
+              a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
     hr.u-separator
+    section.featureBlock.featureBlock--normal
+      div.featureBlock-header
+        h3.featureBlock-title More Developers
+        p.featureBlock-tagline Praesent facilisis dolor sapien, vel sodales augue mollis ut. Mauris venenatis magna eu tortor posuere luctus. Aenean tincidunt turpis sed dui aliquam vehi.
+        div.featureBlock-body.authorFeatures
+          .authorFeature
+            .authorFeature-avatar
+              .avatar-inner
+                img(src='http://placehold.it/100x100' title='Chris Coyier')
+            h4.authorFeature-name Chris Coyier
+            p.authorFeature-description UX Designer. Parent
+          .authorFeature
+            .authorFeature-avatar
+              .avatar-inner
+                img(src='http://placehold.it/100x100' title='Chris Coyier')
+            h4.authorFeature-name Chris Coyier
+            p.authorFeature-description UX Designer. Parent
+          .authorFeature
+            .authorFeature-avatar
+              .avatar-inner
+                img(src='http://placehold.it/100x100' title='Chris Coyier')
+            h4.authorFeature-name Chris Coyier
+            p.authorFeature-description UX Designer. Parent
