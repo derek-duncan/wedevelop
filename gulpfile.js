@@ -32,6 +32,7 @@ var stylesTask = function(app) {
       require('postcss-import'),
       require('postcss-nested'),
       require('postcss-custom-properties'),
+      require('postcss-each'),
       require('postcss-custom-media'),
       autoprefixer({ browsers: ['last 2 version'] }),
       mqpacker,

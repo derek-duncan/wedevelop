@@ -17,11 +17,14 @@
   --maxContentWidth: 62rem;
 
   /* Media Queries */
-  @custom-media --min-medium (min-width: 32em);
+  @custom-media --min-medium (min-width: 480px);
+  @custom-media --min-large (min-width: 768px);
+  @custom-media --min-xlarge (min-width: 1024px);
 }
 
 @import 'normalize.css';
 @import './_universal.pcss';
+@import './_grid.pcss';
 @import './_animations.pcss';
 @import './_navigation.pcss';
 @import './_posts.pcss';

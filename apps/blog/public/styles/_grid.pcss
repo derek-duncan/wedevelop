@@ -1,0 +1,73 @@
+:root {
+  --gutter: 2rem;
+}
+
+.u-grid {
+  background: white;
+  margin: 0 0 var(--gutter) 0;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &.u-grid--gutter {
+    /* Opt-in outside padding */
+    padding: var(--gutter) 0 var(--gutter) var(--gutter);
+    [class*='u-col-']:last-of-type {
+      padding-right: var(--gutter);
+    }
+  }
+}
+
+.u-row {
+  clear: both;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+[class*='u-col-'] {
+  float: left;
+  margin: 0 0 var(--gutter);
+
+  @media (--min-medium) {
+    margin: 0 calc(var(--gutter) / 2) var(--gutter);
+
+    .u-row &:nth-of-type(:even) {
+      margin-left: 0;
+    }
+
+    .u-row &:nth-of-type(:odd) {
+      margin-right: 0;
+    }
+  }
+
+  @media (--min-large) {
+    .u-row &:first-of-type {
+      margin-left: 0;
+    }
+
+    .u-row &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+@each $i in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 {
+  .u-col-$(i) {
+    width: 100%;
+
+    @media (--min-medium) {
+      width: calc(50% - var(--gutter));
+    }
+
+    @media (--min-large) {
+      width: calc((100% - (12 / $(i) - 1) * var(--gutter)) / 12 * $(i));
+    }
+  }
+}
