@@ -1,4 +1,11 @@
 extends ./templates/default.jade
 
 block body
-  h4 Post
+  main.mainContainer.page.page-post
+    article.postView
+      header.postView-header
+        h1.postView-title.u-rule= post.title
+      div.postView-body
+        .postView-content
+          span.dropCap L
+          | !{post.body}

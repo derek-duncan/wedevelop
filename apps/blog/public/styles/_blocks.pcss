@@ -1,9 +1,7 @@
 .sectionBlock {
-
 }
 
 .sectionBlock--normal {
-  text-align: center;
 }
 
 .sectionBlock-title {
@@ -29,6 +27,10 @@
   padding: 2rem 0 0;
 }
 
+.authorFeature {
+  text-align: center;
+}
+
 .authorFeature-avatar {
   position: relative;
   display: block;
@@ -47,10 +49,17 @@
     border-radius: 50%;
   }
 
+  img {
+    position: relative;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
   &::before {
     position: absolute;
     z-index: 5;
-    bottom: 2rem;
+    bottom: 2.5rem;
     left: 0;
     display: block;
     width: 80%;

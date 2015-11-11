@@ -7,8 +7,9 @@ block body
         ul.postList
           each post in posts
             li.postList-item.postList-item--hero
-              h2.postList-title.u-rule.u-rule--bottom= post.title
-              div.postList-blurb= post.body
+              a(href='/posts/#{post.machine_name}' title= post.title)
+                h2.postList-title.u-rule.u-rule--bottom= post.title
+              div.postList-blurb !{post.body}
               a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
 
     hr.u-separator
@@ -22,19 +23,19 @@ block body
             .authorFeature.u-col-4
               .authorFeature-avatar
                 .avatar-inner
-                  img(src='http://placehold.it/100x100' title='Chris Coyier')
+                  img(src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
               h4.authorFeature-name Chris Coyier
               p.authorFeature-description UX Designer. Parent
             .authorFeature.u-col-4
               .authorFeature-avatar
                 .avatar-inner
-                  img(src='http://placehold.it/100x100' title='Chris Coyier')
+                  img(src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
               h4.authorFeature-name Chris Coyier
               p.authorFeature-description UX Designer. Parent
             .authorFeature.u-col-4
               .authorFeature-avatar
                 .avatar-inner
-                  img(src='http://placehold.it/100x100' title='Chris Coyier')
+                  img(src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
               h4.authorFeature-name Chris Coyier
               p.authorFeature-description UX Designer. Parent
 

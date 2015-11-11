@@ -13,7 +13,7 @@
   --serifFont: 'Lora', serif;
 
   /* Sizes */
-  --maxNavWidth: 80%;
+  --maxNavWidth: 80rem;
   --maxContentWidth: 62rem;
 
   /* Media Queries */
@@ -24,6 +24,7 @@
 
 @import 'normalize.css';
 @import './_universal.pcss';
+@import './_typeography.pcss';
 @import './_grid.pcss';
 @import './_animations.pcss';
 @import './_navigation.pcss';
@@ -46,6 +47,16 @@ body {
   font: 1.6rem var(--serifFont);
   color: var(--textColor);
   background-color: #fff;
+}
+
+a {
+  color: var(--textColor);
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--primaryColor);
+  }
 }
 
 .top-bar {
