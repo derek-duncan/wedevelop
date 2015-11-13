@@ -21,13 +21,18 @@
 
 .postList-title {
   margin: 0;
-  font: 700 4.2rem/4.6rem var(--serifFont);
+  font-size: 4.2rem;
 }
 
 .postList-blurb {
   margin: 3rem 0 0;
   font-size: 1.8rem;
   line-height: 3rem;
+
+  p:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 .postList-link {
@@ -36,32 +41,16 @@
   font: 2rem var(--sansFont);
   text-decoration: none;
   color: var(--primaryColor);
-  transition: color 0.3s;
+  transition: color 250ms;
   &:hover {
     color: var(--darkPrimaryColor);
   }
 }
 
-.postView {
-
-}
-
-.postView-header {
-  margin: 0 auto;
-}
-
 .postView-title {
-  font-size: 4rem;
+  font-size: 4.2rem;
 
   &::after {
-    margin-top: 4rem;
     margin-bottom: 4rem;
   }
-}
-
-.postView-body {
-
-}
-
-.postView-content {
 }

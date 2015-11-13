@@ -1,12 +1,16 @@
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
+var _ = require('lodash');
 
 var autoprefixer = require('autoprefixer');
 var mqpacker = require('css-mqpacker');
 var csswring = require('csswring');
 var browserSync = require('browser-sync').create();
 var notify = require('gulp-notify');
-var replace = require('gulp-ext-replace');
+var rename = require('gulp-rename');
+var imageOptim = require('gulp-imageoptim');
+var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
 var path = require('path');
 
 var apps = [{
@@ -24,6 +28,22 @@ var apps = [{
   },
   views: {
     src: './apps/blog/views/**/*.jade'
+  },
+  images: {
+    src: [
+      './apps/blog/public/img/**/*'
+    ]
+  },
+  scripts: {
+    src: [
+      './apps/blog/public/js/**/*.js',
+      '!./apps/blog/public/js/build/*.js'
+    ],
+    dest: './apps/blog/public/js/build',
+    watch: [
+      './apps/blog/public/js/**/*.js',
+      '!./apps/blog/public/js/build/*.js'
+    ]
   }
 }];
 
@@ -40,19 +60,43 @@ var stylesTask = function(app) {
   ];
   gulp.src(app.styles.src)
     .pipe(postcss(processors))
-    .pipe(replace('.css'))
+    .pipe(minifyCss())
+    .pipe(rename({
+      suffix: '.min',
+      extname: '.css'
+    }))
     .pipe(gulp.dest(app.styles.dest))
     .pipe(browserSync.stream());
 };
 
-gulp.task('styles', function () {
-  for (var i = 0; i < apps.length; ++i) {
-    var app = apps[i];
+gulp.task('styles', function() {
+  _.each(apps, function(app) {
     stylesTask(app);
-  }
+  });
 });
 
-gulp.task('default', ['styles'], function() {
+gulp.task('scripts', function() {
+  _.each(apps, function(app) {
+    gulp.src(app.scripts.src)
+      .pipe(uglify())
+      .pipe(rename({
+        suffix: '.min'
+      }))
+      .pipe(gulp.dest(app.scripts.dest));
+  });
+});
+
+gulp.task('images', function() {
+  _.each(apps, function(app) {
+    gulp.src(app.images.src)
+      .pipe(imageOptim.optimize())
+      .pipe(gulp.dest(function(data) {
+        return data.base;
+      }));
+  });
+});
+
+gulp.task('default', ['styles', 'scripts'], function() {
   browserSync.init({
     open: 'external',
     proxy: 'localhost:3000',
@@ -60,9 +104,10 @@ gulp.task('default', ['styles'], function() {
     port: 3000
   });
 
-  for (var i = 0; i < apps.length; ++i) {
-    var app = apps[i];
+  _.each(apps, function(app) {
     gulp.watch(app.styles.watch, ['styles']);
     gulp.watch(app.views.src).on('change', browserSync.reload);
-  }
+
+    gulp.watch(app.scripts.watch, ['scripts']);
+  });
 });
