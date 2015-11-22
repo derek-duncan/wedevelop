@@ -15,7 +15,7 @@ import config from './config.js';
 
 // Sub apps
 // import adminApp from './apps/admin';
-// import apiApp from './apps/api';
+import apiApp from './apps/api';
 import blogApp from './apps/blog';
 import coreApp from './apps/core';
 
@@ -44,7 +44,7 @@ app.use(convert(json()));
 // Mount sub apps
 app.use(mount('/', coreApp));
 app.use(mount('/posts', blogApp));
-// app.use(mount('/v1', apiApp));
+app.use(mount('/api/v1', apiApp));
 // app.use(mount('/admin', adminApp));
 
 app.use(convert(compress()));

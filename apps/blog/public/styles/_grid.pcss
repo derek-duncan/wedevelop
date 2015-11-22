@@ -35,7 +35,7 @@
   float: left;
   margin: 0 0 var(--gutter);
 
-  @media (--min-medium) {
+  @media (--media-medium--min) {
     margin: 0 calc(var(--gutter) / 2) var(--gutter);
 
     .u-row &:nth-of-type(:even) {
@@ -47,7 +47,7 @@
     }
   }
 
-  @media (--min-large) {
+  @media (--media-large--min) {
     .u-row &:first-of-type {
       margin-left: 0;
     }
@@ -62,11 +62,11 @@
   .u-col-$(i) {
     width: 100%;
 
-    @media (--min-medium) {
+    @media (--media-medium--min) {
       width: calc(50% - var(--gutter));
     }
 
-    @media (--min-large) {
+    @media (--media-large--min) {
       width: calc((100% - (12 / $(i) - 1) * var(--gutter)) / 12 * $(i));
     }
   }

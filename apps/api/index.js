@@ -1,27 +1,15 @@
-import koa from 'koa';
-import mount from 'koa-mount';
-import oauthserver from 'koa-oauth-server';
+'use strict';
 
-import env from './env.js';
-import OAuthModel from './auth/oauth/oauthModel.js';
-import authController from './auth/authController.js';
-import clientController from './auth/clients/clientController.js';
-import userController from './users/userController.js';
+import Koa from 'koa';
+import co from 'co';
+import convert from 'koa-convert';
 
-const app = koa();
+import postsController from './posts/postsController.js';
 
-app.oauth = oauthserver({
-  model: OAuthModel,
-  grants: ['password', 'authorization_code'],
-  debug: true,
-  accessTokenLifetime: 60 * 60 * 24
-});
+const app = new Koa();
 
-// Auth routes
-app.use(mount('/oauth', authController(app).routes()));
-// Client routes
-app.use(clientController(app).routes());
-// User routes
-app.use(userController.routes());
+// Routes
+let postsRoutes = postsController.routes();
+app.use(co.wrap(postsRoutes));
 
 export default app;

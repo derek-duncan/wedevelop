@@ -7,14 +7,14 @@
 .sectionBlock-title {
   margin: 0 0 0.5rem;
   padding: 0;
-  font: 3.8rem var(--sansFont);
-  color: var(--lightTextColor);
+  font: 3.8rem var(--font-sans);
+  color: var(--color-text--light);
 }
 
 .sectionBlock-tagline {
   margin: 0;
   padding: 0;
-  font: 1.6rem var(--serifFont);
+  font: 1.6rem var(--font-serif);
 }
 
 .sectionBlock-body {
@@ -28,25 +28,55 @@
 }
 
 .authorFeature {
-  text-align: center;
+
+  @media (--media-medium--min) {
+    text-align: center;
+  }
 }
 
 .authorFeature-avatar {
   position: relative;
-  display: block;
-  margin: 0 auto 2rem;
+  display: inline-block;
+  width: calc(10rem + 2rem);
+  vertical-align: middle;
+  margin: 0 0 2rem;
+  padding: 0 2rem 0 0;
+
+  @media (--media-medium--min) {
+    display: block;
+    width: auto;
+    margin: 0 auto 2rem;
+    padding: 0;
+
+    &::before {
+      position: absolute;
+      z-index: 5;
+      bottom: 2.5rem;
+      left: 0;
+      display: block;
+      width: 80%;
+      height: 1px;
+      margin: 0 0 0 10%;
+      background-color: var(--color-primary);
+      content: '';
+    }
+  }
 
   .avatar-inner {
     position: relative;
     z-index: 10;
     display: inline-block;
+    width: 10rem;
     overflow: hidden;
-    width: calc(10rem + 4rem); /* Account for the border size */
     height: 10rem;
-    border-left: 2rem solid #fff;
-    border-right: 2rem solid #fff;
-    background-color: var(--lightGreyColor);
+    background-color: var(--color-gray--light);
     border-radius: 50%;
+
+    @media (--media-medium--min) {
+      width: calc(10rem + 4rem); /* Account for the border size */
+      border-left: 2rem solid #fff;
+      border-right: 2rem solid #fff;
+    }
   }
 
   img {
@@ -55,25 +85,23 @@
     height: 100%;
     transform: translateX(-50%);
   }
+}
 
-  &::before {
-    position: absolute;
-    z-index: 5;
-    bottom: 2.5rem;
-    left: 0;
+.authorFeature-body {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 12rem);
+
+  @media (--media-medium--min) {
     display: block;
-    width: 80%;
-    height: 1px;
-    margin: 0 0 0 10%;
-    background-color: var(--primaryColor);
-    content: '';
+    width: auto;
   }
 }
 
 .authorFeature-name {
   margin: 0;
   padding: 0;
-  font: 700 3rem/1.1 var(--sansFont);
+  font: 700 3rem/1.1 var(--font-sans);
 }
 
 .authorFeature-description {

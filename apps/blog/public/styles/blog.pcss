@@ -1,25 +1,25 @@
 :root {
   /* Colors */
-  --primaryColor: #ff0097;
-  --darkPrimaryColor: #a70063;
-  --textColor: #333;
-  --lightTextColor: #878787;
+  --color-primary: #ff0097;
+  --color-primary--dark: #a70063;
+  --color-text: #333;
+  --color-text--light: #878787;
 
-  --greyColor: #888;
-  --lightGreyColor: #ddd;
+  --color-gray: #888;
+  --color-gray--light: #ddd;
 
   /* Fonts */
-  --sansFont: 'Khula', sans-serif;
-  --serifFont: 'Lora', serif;
+  --font-sans: 'Khula', sans-serif;
+  --font-serif: 'Lora', serif;
 
   /* Sizes */
-  --maxNavWidth: 80rem;
-  --maxContentWidth: 62rem;
+  --width-nav--max: 80rem;
+  --width-content--max: 62rem;
 
   /* Media Queries */
-  @custom-media --min-medium (min-width: 480px);
-  @custom-media --min-large (min-width: 768px);
-  @custom-media --min-xlarge (min-width: 1024px);
+  @custom-media --media-medium--min (min-width: 480px);
+  @custom-media --media-large--min (min-width: 768px);
+  @custom-media --media-larger--min (min-width: 1024px);
 }
 
 @import 'normalize.css';
@@ -45,18 +45,18 @@ html {
 
 body {
   position: relative;
-  font: 1.6rem var(--serifFont);
-  color: var(--textColor);
+  font: 1.6rem var(--font-serif);
+  color: var(--color-text);
   background-color: #fff;
 }
 
 a {
-  color: var(--textColor);
+  color: var(--color-text);
   text-decoration: none;
   transition: color 0.3s;
 
   &:hover {
-    color: var(--primaryColor);
+    color: var(--color-text);
   }
 }
 
@@ -67,14 +67,15 @@ a {
     display: block;
     width: 0;
     height: 2px;
-    background-color: var(--primaryColor);
+    background-color: var(--color-primary);
     animation: 0.75s 0.25s expandBar ease forwards;
     content: '';
   }
 }
 
 .mainContainer {
-  max-width: var(--maxContentWidth);
+  max-width: calc(var(--width-content--max) - 2rem);
   width: 100%;
   margin: 4rem auto;
+  padding: 0 2rem;
 }
