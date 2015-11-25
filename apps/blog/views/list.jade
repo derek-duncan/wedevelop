@@ -9,7 +9,7 @@ block body
             li.postList-item.postList-item--hero
               a(href='/posts/#{post.machine_name}' title= post.title)
                 h2.postList-title.u-rule.u-rule--bottom= post.title
-              div.postList-blurb !{post.body}
+              div.postList-blurb !{post.short_summary}
               a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
 
     hr.u-separator

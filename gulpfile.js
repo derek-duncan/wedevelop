@@ -31,7 +31,7 @@ var apps = [{
   },
   images: {
     src: [
-      './apps/blog/public/img/**/*'
+      './public/img/**/*'
     ]
   },
   scripts: {

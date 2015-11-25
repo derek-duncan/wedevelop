@@ -3,11 +3,12 @@ import co from 'co';
 import convert from 'koa-convert';
 import Router from 'koa-66';
 import parse from 'co-body';
+import mongoose from 'mongoose';
 
 import config from '../../../config.js';
 import render from '../lib/render.js';
-import Post from './postsModel.js';
 
+const Post = mongoose.model('Post');
 const router = new Router();
 
 // All routes are mounted with the /posts prefix
@@ -35,7 +36,8 @@ function *list(ctx, next) {
  */
 function *fetch(ctx, next) {
   let postId = ctx.params.postId;
-  let post = yield Post.findOne({ machine_name: postId }).exec();
+  // find post by machine_name or _id for more flexible linking
+  let post = yield Post.findOne({ $or: [ { machine_name: postId }, { _id: postId } ] }).exec();
   if (!post) ctx.throw(404);
 
   ctx.body = yield render('post', {

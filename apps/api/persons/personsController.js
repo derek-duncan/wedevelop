@@ -8,34 +8,34 @@ import responseFormat from '../lib/responseFormat.js';
 
 import config from '../../../config.js';
 
-const Post = mongoose.model('Post');
+const Person = mongoose.model('Person');
 const router = new Router();
 
-// All routes are mounted with the /posts prefix
-router.get('/posts', co.wrap(list));
-router.post('/posts', co.wrap(add));
+// All routes are mounted with the /persons prefix
+router.get('/persons', co.wrap(list));
+router.post('/persons', co.wrap(add));
 
-router.get('/posts/:postId', co.wrap(fetch));
+router.get('/persons/:personId', co.wrap(fetch));
 
 export default router;
 
 /**
- * Post listing
+ * Person listing
  */
 function *list(ctx, next) {
-  let posts = yield Post.find({}).exec();
-  ctx.body = responseFormat(400, posts);
+  let persons = yield Person.find({}).exec();
+  ctx.body = responseFormat(400, persons);
 }
 
 /**
  * Find a post by id
  */
 function *fetch(ctx, next) {
-  let postId = ctx.params.postId;
-  let post = yield Post.findOne({ machine_name: postId }).exec();
-  if (!post) ctx.throw(404);
+  let personId = ctx.params.personId;
+  let person = yield Person.findOne({ _id: personId }).exec();
+  if (!person) ctx.throw(404);
 
-  ctx.body = responseFormat(400, post);
+  ctx.body = responseFormat(400, person);
 }
 
 /**
@@ -43,7 +43,7 @@ function *fetch(ctx, next) {
  */
 function *add(ctx, next) {
   let body = yield parse.form(ctx);
-  let newPost = new Post();
+  let newPost = new Person();
   newPost.title = body.title;
   newPost.body = body.body;
   try {
