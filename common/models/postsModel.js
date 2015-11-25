@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 let PostSchema = new Schema({
   _id: { type: String, default: shortid.generate },
   machine_name: { type: String },
-  person: { type: Schema.Types.ObjectId, ref: 'Person' },
+  person: { type: String, ref: 'Person' },
   title: { type: String },
   body: { type: String },
   short_summary: { type: String },
