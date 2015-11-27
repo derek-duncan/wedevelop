@@ -1,7 +1,7 @@
 .nav {
-  max-width: calc(var(--width-nav--max) - 2rem);
+  width: calc(var(--width-nav--max) - var(--gutter-medium));
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--gutter-small) var(--gutter-medium);
 }
 
 .nav-logo {
@@ -11,4 +11,11 @@
   color: var(--color-text);
   opacity: 0;
   animation: fadeIn 250ms forwards;
+}
+
+.subNav {
+  width: calc(var(--width-nav--max) - var(--gutter-medium));
+  margin: var(--gutter-small) auto 0;
+  padding: 0 var(--gutter-medium);
+  font: var(--fontSize-small) var(--font-sans);
 }

@@ -1,7 +1,7 @@
 extends ./templates/default.jade
 
 block body
-  main.mainContainer.page.page-home
+  main.mainContainer.page.page--home
     article.sectionBlock.sectionBlock--hero
       if posts
         ul.postList
@@ -53,4 +53,4 @@ block body
             .u-row
               each i in [1, 2, 3, 4]
                 .u-col-3
-                  img.transparent.lazyLoad(data-src='http://placehold.it/200x200' width='140' height='140')
+                  img.transparent.lazyLoad(data-src='http://lorempixel.com/140/140/sports/#{Math.floor(Math.random() * 10)}' width='140' height='140')

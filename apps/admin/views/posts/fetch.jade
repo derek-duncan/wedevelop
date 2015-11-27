@@ -1,0 +1,10 @@
+extends ../templates/default.jade
+
+block body
+  .mainContainer
+    article.postEdit
+      form.postEdit-form(action='/admin/posts/#{post.machine_name}' method='put')
+        label Title
+        input(type='text' value=post.title)
+        label Body
+        textarea()= post.body

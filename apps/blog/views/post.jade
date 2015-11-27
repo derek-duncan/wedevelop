@@ -1,7 +1,10 @@
 extends ./templates/default.jade
 
+block subNav
+  a(href='/posts') < return to list
+
 block body
-  main.mainContainer.page.page-post
+  main.mainContainer.page.page--post
     article.postView
       header.postView-header
         h1.postView-title.u-rule= post.title

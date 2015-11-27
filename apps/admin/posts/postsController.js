@@ -12,8 +12,8 @@ const Post = mongoose.model('Post');
 const router = new Router();
 
 // All routes are mounted with the /posts prefix
-router.get('/', co.wrap(list));
-router.get('/:postId', co.wrap(fetch));
+router.get('/posts', co.wrap(list));
+router.get('/posts/:postId', co.wrap(fetch));
 
 export default router;
 
@@ -22,7 +22,7 @@ export default router;
  */
 function *list(ctx, next) {
   let posts = yield Post.find({}).exec();
-  ctx.body = yield ctx.render('list', {
+  ctx.body = yield ctx.render('posts/list', {
     posts: posts
   });
 }
@@ -36,7 +36,7 @@ function *fetch(ctx, next) {
   let post = yield Post.findOne({ $or: [ { machine_name: postId }, { _id: postId } ] }).exec();
   if (!post) ctx.throw(404);
 
-  ctx.body = yield ctx.render('post', {
+  ctx.body = yield ctx.render('posts/fetch', {
     post: post
   });
 }

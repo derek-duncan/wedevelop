@@ -1,0 +1,8 @@
+extends ../templates/default.jade
+
+block body
+  .mainContainer
+    h2 Da posts
+    each post in posts
+      h4
+        a(href='/admin/posts/#{post.machine_name}')= post.title

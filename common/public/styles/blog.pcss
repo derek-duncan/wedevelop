@@ -12,9 +12,28 @@
   --font-sans: 'Khula', sans-serif;
   --font-serif: 'Lora', serif;
 
+  /* Font Sizes */
+  --fontSize-smallest: 1rem;
+  --fontSize-smaller: 1.2rem;
+  --fontSize-small: 1.4rem;
+  --fontSize-medium: 1.6rem;
+  --fontSize-large: 1.8rem;
+  --fontSize-larger: 2rem;
+  --fontSize-largest: 2.2rem;
+
   /* Sizes */
   --width-nav--max: 80rem;
   --width-content--max: 62rem;
+
+  /* Gutter */
+  --gutter-smaller: 1.5rem;
+  --gutter-small: 2rem;
+  --gutter-medium: 3rem;
+  --gutter-large: 4.5rem;
+  --gutter-larger: 6rem;
+
+  /* Transitions */
+  --transitionSpeed-medium: 250ms;
 
   /* Media Queries */
   @custom-media --media-medium--min (min-width: 480px);
@@ -31,6 +50,8 @@
 @import './_navigation.pcss';
 @import './_posts.pcss';
 @import './_blocks.pcss';
+@import './_footer.pcss';
+@import './_page.pcss';
 
 /* Pages */
 @import './pages/_home.pcss';
@@ -51,12 +72,13 @@ body {
 }
 
 a {
-  color: var(--color-text);
+  color: var(--color-primary);
   text-decoration: none;
+  cursor: pointer;
   transition: color 0.3s;
 
   &:hover {
-    color: var(--color-text);
+    color: var(--color-primary--dark);
   }
 }
 
@@ -76,6 +98,6 @@ a {
 .mainContainer {
   max-width: calc(var(--width-content--max) - 2rem);
   width: 100%;
-  margin: 4rem auto;
-  padding: 0 2rem;
+  margin: var(--gutter-medium) auto;
+  padding: 0 var(--gutter-medium);
 }

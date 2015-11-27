@@ -49,10 +49,12 @@ app.use(convert(json()));
 let coreApp = require('./apps/core').default;
 let blogApp = require('./apps/blog').default;
 let apiApp = require('./apps/api').default;
+let adminApp = require('./apps/admin').default;
 
 app.use(mount('/', coreApp.app));
 app.use(mount('/posts', blogApp.app));
 app.use(mount('/api/v1', apiApp.app));
+app.use(mount('/admin', adminApp.app));
 
 // Serve static files
 let publicDirectory = path.join(__dirname, 'common', 'public');

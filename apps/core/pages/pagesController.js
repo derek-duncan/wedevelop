@@ -1,7 +1,7 @@
 // Dependencies
 import co from 'co';
+import path from 'path';
 import Router from 'koa-66';
-import render from '../lib/render.js';
 import config from '../../../config.js';
 
 const router = new Router();
@@ -11,5 +11,5 @@ router.get('/', co.wrap(home));
 export default router;
 
 function *home(ctx, next) {
-  ctx.body = yield render('home');
+  ctx.body = yield ctx.render('home');
 }

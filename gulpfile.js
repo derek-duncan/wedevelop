@@ -17,13 +17,13 @@ var apps = [{
   name: 'blog',
   styles: {
     src: [
-      './apps/blog/public/styles/**/[^_]*.pcss',
-      '!./apps/blog/public/styles/build/*.css'
+      './common/public/styles/**/[^_]*.pcss',
+      '!./common/public/styles/build/*.css'
     ],
-    dest: './apps/blog/public/styles/build',
+    dest: './common/public/styles/build',
     watch: [
-      './apps/blog/public/styles/**/*.pcss',
-      '!./apps/blog/public/styles/build/*.css'
+      './common/public/styles/**/*.pcss',
+      '!./common/public/styles/build/*.css'
     ]
   },
   views: {
@@ -36,13 +36,13 @@ var apps = [{
   },
   scripts: {
     src: [
-      './apps/blog/public/js/**/*.js',
-      '!./apps/blog/public/js/build/*.js'
+      './common/public/js/**/*.js',
+      '!./common/public/js/build/*.js'
     ],
-    dest: './apps/blog/public/js/build',
+    dest: './common/public/js/build',
     watch: [
-      './apps/blog/public/js/**/*.js',
-      '!./apps/blog/public/js/build/*.js'
+      './common/public/js/**/*.js',
+      '!./common/public/js/build/*.js'
     ]
   }
 }];
