@@ -24,7 +24,7 @@ block body
               .authorFeature.u-col-4
                 .authorFeature-avatar
                   .avatar-inner
-                    img.transparent.lazyLoad(data-src=post.person.profile_picture title='Chris Coyier')
+                    img.transparent.lazyLoad(data-src=post.person.profile_picture title=post.person.name)
                 .authorFeature-body
                   h4.authorFeature-name= post.person.name
                   p.authorFeature-description= post.person.short_description

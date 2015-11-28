@@ -7,6 +7,9 @@ block body
     a.nav-item(href='/admin/posts/new') Add Post
   .mainContainer
     h2 All posts
-    each post in posts
-      h4
-        a(href='/admin/posts/#{post.machine_name}')= post.title
+    if posts.length
+      each post in posts
+        h4
+          a(href='/admin/posts/#{post.machine_name}')= post.title
+    else
+      p No posts yet

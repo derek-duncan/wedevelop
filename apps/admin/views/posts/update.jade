@@ -21,4 +21,5 @@ block body
           textarea.form-textarea(name='body')= post.body
         .form-group
           button.button(type='submit') Update
+      button.button.js-button--delete(data-url='/api/v1/posts/#{post._id}' data-redirectURL='/admin/posts') Delete
 

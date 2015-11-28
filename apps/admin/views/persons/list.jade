@@ -7,6 +7,9 @@ block body
     a.nav-item(href='/admin/persons/new') Add Person
   .mainContainer
     h2 All People
-    each person in persons
-      h4
-        a(href='/admin/persons/#{person._id}')= person.name
+    if persons.length
+      each person in persons
+        h4
+          a(href='/admin/persons/#{person._id}')= person.name
+    else
+      p No people yet

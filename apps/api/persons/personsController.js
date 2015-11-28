@@ -17,6 +17,7 @@ router.post('/persons', co.wrap(add));
 
 router.get('/persons/:personId', co.wrap(fetch));
 router.put('/persons/:personId', co.wrap(update));
+router.delete('/persons/:personId', co.wrap(remove));
 
 export default router;
 
@@ -73,6 +74,22 @@ function *update(ctx, next) {
 
     ctx.status = 200;
     ctx.body = responseFormat(200, person, 'success');
+  } catch(err) {
+    ctx.throw(err);
+  }
+}
+
+/**
+ * Remove a person
+ */
+function *remove(ctx, next) {
+  let personId = ctx.params.personId;
+
+  try {
+    yield Person.remove({ _id: personId });
+
+    ctx.status = 200;
+    ctx.body = responseFormat(200, null, 'success');
   } catch(err) {
     ctx.throw(err);
   }
