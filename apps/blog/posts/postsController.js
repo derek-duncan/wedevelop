@@ -22,8 +22,10 @@ export default router;
  */
 function *home(ctx, next) {
   let posts = yield Post.find({}).sort('-created_at').limit(1).exec();
+  let postFeatures = yield Post.find({}).populate('person').sort('-created_at').limit(3).skip(1).exec();
   ctx.body = yield ctx.render('home', {
-    posts: posts
+    posts: posts,
+    postFeatures: postFeatures
   });
 }
 

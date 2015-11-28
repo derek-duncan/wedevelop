@@ -9,6 +9,7 @@ import createRender from '../../common/lib/render.js';
 const render = createRender(path.join(__dirname, 'views'));
 
 import postsController from './posts/postsController.js';
+import personsController from './persons/personsController.js';
 
 const app = new Koa();
 
@@ -22,6 +23,9 @@ app.use(co.wrap(function* (ctx, next) {
 // Routes
 let postsRoutes = postsController.routes();
 app.use(co.wrap(postsRoutes));
+
+let personsRoutes = personsController.routes();
+app.use(co.wrap(personsRoutes));
 
 export default {
   app: app

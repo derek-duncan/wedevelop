@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import config from '../../../config.js';
 
 const Post = mongoose.model('Post');
+const Person = mongoose.model('Person');
 const router = new Router();
 
 // All routes are mounted with the /posts prefix
@@ -35,10 +36,12 @@ function *fetch(ctx, next) {
   let postId = ctx.params.postId;
   // find post by machine_name or _id for more flexible linking
   let post = yield Post.findOne({ $or: [ { machine_name: postId }, { _id: postId } ] }).exec();
+  let persons = yield Person.find({}).sort('-created_at');
   if (!post) ctx.throw(404);
 
   ctx.body = yield ctx.render('posts/update', {
-    post: post
+    post: post,
+    persons: persons
   });
 }
 
@@ -46,5 +49,8 @@ function *fetch(ctx, next) {
  * Add a post
  */
 function *add(ctx, next) {
-  ctx.body = yield ctx.render('posts/new');
+  let persons = yield Person.find({}).sort('-created_at');
+  ctx.body = yield ctx.render('posts/new', {
+    persons: persons
+  });
 }

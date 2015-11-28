@@ -1,0 +1,19 @@
+extends ../templates/default.jade
+
+block subNav
+  a(href='/admin/persons') < return to list
+
+block body
+  .mainContainer
+    article.personEdit
+      h4.page-title Update Person
+      form.form.js-form--ajax.personEdit-form(action='/api/v1/persons/#{person._id}' method='PUT')
+        .form-group
+          label.form-label Name
+          input.form-input(type='text' name='name' value=person.name)
+        .form-group
+          label.form-label Short Description
+          input.form-input(type='text' name='short_description' value=person.short_description)
+        .form-group
+          button.button(type='submit') Update
+

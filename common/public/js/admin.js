@@ -19,22 +19,43 @@
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
           // it worked
+          var currentURL;
+          try {
+            var res = JSON.parse(xmlhttp.responseText);
+            currentURL = window.location.href.split('/');
+            currentURL.pop();
+            var updatedPath = res.data.machine_name ? res.data.machine_name : res.data._id;
+            currentURL.push(updatedPath);
+            currentURL = currentURL.join('/');
+          } catch (e) {
+            // just swallow it. I dont care.
+          }
+
+          var redirectURL = form.dataset.redirectURL ? form.dataset.redirectURL : currentURL;
+          if (redirectURL) {
+            window.location.href = redirectURL;
+          }
         }
       };
 
       var action = form.getAttribute('action');
       var method = form.getAttribute('method');
-      var titleValue = form.querySelector('[name=title]').value;
-      var bodyValue = form.querySelector('[name=body]').value;
+      var elements = form.elements;
 
       xmlhttp.open(method, action, true);
       xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      xmlhttp.send('title=' + titleValue + '&body=' + bodyValue);
 
-      var redirectURL = form.dataset.redirectURL;
-      if (redirectURL) {
-        window.location.href = redirectURL;
+      var sendString = '';
+      for (var i = 0; i < elements.length; ++i) {
+        var element = elements[i];
+        if (!element.getAttribute('name')) continue;
+
+        var prefix = '';
+        if (i) prefix = '&';
+
+        sendString += prefix + encodeURIComponent(element.getAttribute('name')) + '=' + encodeURIComponent(element.value);
       }
+      xmlhttp.send(sendString);
 
       return false;
     }

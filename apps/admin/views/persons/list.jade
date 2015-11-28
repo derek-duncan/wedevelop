@@ -4,9 +4,9 @@ block body
   .nav
     a.nav-item(href='/admin/posts') Posts
     a.nav-item(href='/admin/persons') Persons
-    a.nav-item(href='/admin/posts/new') Add Post
+    a.nav-item(href='/admin/persons/new') Add Person
   .mainContainer
-    h2 All posts
-    each post in posts
+    h2 All People
+    each person in persons
       h4
-        a(href='/admin/posts/#{post.machine_name}')= post.title
+        a(href='/admin/persons/#{person._id}')= person.name

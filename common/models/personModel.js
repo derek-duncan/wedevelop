@@ -10,6 +10,7 @@ let PersonSchema = new Schema({
   _id: { type: String, default: shortid.generate },
   name: { type: String },
   profile_picture: { type: String },
+  short_description: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, }
 });

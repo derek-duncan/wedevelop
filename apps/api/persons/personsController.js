@@ -16,6 +16,7 @@ router.get('/persons', co.wrap(list));
 router.post('/persons', co.wrap(add));
 
 router.get('/persons/:personId', co.wrap(fetch));
+router.put('/persons/:personId', co.wrap(update));
 
 export default router;
 
@@ -24,32 +25,52 @@ export default router;
  */
 function *list(ctx, next) {
   let persons = yield Person.find({}).exec();
-  ctx.body = responseFormat(400, persons);
+  ctx.body = responseFormat(200, persons);
 }
 
 /**
- * Find a post by id
+ * Find a person by id
  */
 function *fetch(ctx, next) {
   let personId = ctx.params.personId;
   let person = yield Person.findOne({ _id: personId }).exec();
   if (!person) ctx.throw(404);
 
-  ctx.body = responseFormat(400, person);
+  ctx.body = responseFormat(200, person);
 }
 
 /**
- * Add a post
+ * Add a person
  */
 function *add(ctx, next) {
   let body = yield parse.form(ctx);
-  let newPost = new Person();
-  newPost.title = body.title;
-  newPost.body = body.body;
+  let newPerson = new Person();
+  newPerson.name = body.name;
+  newPerson.short_description = body.short_description;
   try {
-    yield newPost.save();
-    ctx.status = 400;
-    ctx.body = responseFormat(400, null, 'success');
+    yield newPerson.save();
+    ctx.status = 200;
+    ctx.body = responseFormat(200, newPerson, 'success');
+  } catch(err) {
+    ctx.throw(err);
+  }
+}
+
+/**
+ * Update a person
+ */
+function *update(ctx, next) {
+  let body = yield parse.form(ctx);
+  let personId = ctx.params.personId;
+
+  try {
+    let person = yield Person.findOne({ _id: personId }).exec();
+    person.name = body.name;
+    person.short_description = body.short_description;
+    yield person.save();
+
+    ctx.status = 200;
+    ctx.body = responseFormat(200, person, 'success');
   } catch(err) {
     ctx.throw(err);
   }

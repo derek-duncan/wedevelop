@@ -20,27 +20,14 @@ block body
         p.sectionBlock-tagline Praesent facilisis dolor sapien, vel sodales augue mollis ut. Mauris venenatis magna eu tortor posuere luctus. Aenean tincidunt turpis sed dui aliquam vehi.
         div.sectionBlock-body.authorFeatures.u-grid
           .u-row
-            .authorFeature.u-col-4
-              .authorFeature-avatar
-                .avatar-inner
-                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
-              .authorFeature-body
-                h4.authorFeature-name Chris Coyier
-                p.authorFeature-description UX Designer. Parent
-            .authorFeature.u-col-4
-              .authorFeature-avatar
-                .avatar-inner
-                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
-              .authorFeature-body
-                h4.authorFeature-name Chris Coyier
-                p.authorFeature-description UX Designer. Parent
-            .authorFeature.u-col-4
-              .authorFeature-avatar
-                .avatar-inner
-                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
-              .authorFeature-body
-                h4.authorFeature-name Chris Coyier
-                p.authorFeature-description UX Designer. Parent
+            each post in postFeatures
+              .authorFeature.u-col-4
+                .authorFeature-avatar
+                  .avatar-inner
+                    img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
+                .authorFeature-body
+                  h4.authorFeature-name= post.person.name
+                  p.authorFeature-description= post.person.short_description
 
     hr.u-separator
 

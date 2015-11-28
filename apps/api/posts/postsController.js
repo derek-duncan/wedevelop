@@ -25,7 +25,7 @@ export default router;
  */
 function *list(ctx, next) {
   let posts = yield Post.find({}).sort('-created_at').exec();
-  ctx.body = responseFormat(400, posts);
+  ctx.body = responseFormat(200, posts);
 }
 
 /**
@@ -36,7 +36,7 @@ function *fetch(ctx, next) {
   let post = yield Post.findOne({ machine_name: postId }).populate('person').exec();
   if (!post) ctx.throw(404);
 
-  ctx.body = responseFormat(400, post);
+  ctx.body = responseFormat(200, post);
 }
 
 /**
@@ -69,6 +69,7 @@ function *update(ctx, next) {
     let post = yield Post.findOne({ machine_name: postId }).exec();
     post.title = body.title;
     post.body = body.body;
+    post.person = body.person;
     yield post.save();
 
     ctx.status = 200;

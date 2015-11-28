@@ -9,6 +9,11 @@ block body
       h4.page-title Update Post
       form.form.js-form--ajax.postEdit-form(action='/api/v1/posts/#{post.machine_name}' method='PUT')
         .form-group
+          label.form-label Person
+          select(name='person')
+            each person in persons
+              option(value=person._id selected=(person._id === post.person) ? 'selected' : '')= person.name
+        .form-group
           label.form-label Title
           input.form-input(type='text' value=post.title name='title')
         .form-group

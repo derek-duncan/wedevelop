@@ -1,0 +1,18 @@
+extends ../templates/default.jade
+
+block subNav
+  a(href='/admin/persons') < return to list
+
+block body
+  .mainContainer
+    article.personEdit
+      h4.page-title Add Person
+      form.form.js-form--ajax.personNew-form(action='/api/v1/persons' method='POST' data-redirectURL='/admin/persons')
+        .form-group
+          label.form-label Name
+          input.form-input(type='text' name='name' placeholder='Person title')
+        .form-group
+          label.form-label Short Description
+          input.form-input(type='text' name='short_description' placeholder='Short description of person.')
+        .form-group
+          button.button(type='submit') Add
