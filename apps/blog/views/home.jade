@@ -1,0 +1,56 @@
+extends ./templates/default.jade
+
+block body
+  main.mainContainer.page.page--home
+    article.sectionBlock.sectionBlock--hero
+      if posts
+        ul.postList
+          each post in posts
+            li.postList-item.postList-item--hero
+              a(href='/posts/#{post.machine_name}' title= post.title)
+                h2.postList-title.u-rule.u-rule--bottom= post.title
+              div.postList-blurb !{post.short_summary}
+              a.postList-link(href='/posts/#{post.machine_name}' title= post.title) Open interview
+
+    hr.u-separator
+
+    section.sectionBlock.sectionBlock--normal
+      div.sectionBlock-header
+        h3.sectionBlock-title More Developers
+        p.sectionBlock-tagline Praesent facilisis dolor sapien, vel sodales augue mollis ut. Mauris venenatis magna eu tortor posuere luctus. Aenean tincidunt turpis sed dui aliquam vehi.
+        div.sectionBlock-body.authorFeatures.u-grid
+          .u-row
+            .authorFeature.u-col-4
+              .authorFeature-avatar
+                .avatar-inner
+                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
+              .authorFeature-body
+                h4.authorFeature-name Chris Coyier
+                p.authorFeature-description UX Designer. Parent
+            .authorFeature.u-col-4
+              .authorFeature-avatar
+                .avatar-inner
+                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
+              .authorFeature-body
+                h4.authorFeature-name Chris Coyier
+                p.authorFeature-description UX Designer. Parent
+            .authorFeature.u-col-4
+              .authorFeature-avatar
+                .avatar-inner
+                  img.transparent.lazyLoad(data-src='https://pmcvariety.files.wordpress.com/2013/10/18gosling.jpg?w=670&h=377&crop=1' title='Chris Coyier')
+              .authorFeature-body
+                h4.authorFeature-name Chris Coyier
+                p.authorFeature-description UX Designer. Parent
+
+    hr.u-separator
+
+    section.sectionBlock.sectionBlock--normal.communityFeature
+      div.sectionBlock-header
+        h3.sectionBlock-title Community
+        p.sectionBlock-tagline Praesent facilisis dolor sapien, vel sodales augue mollis ut. Mauris venenatis magna eu tortor posuere luctus. Aenean tincidunt turpis sed dui aliquam vehi.
+        div.sectionBlock-body.u-grid
+          each x in [1, 2]
+            .u-row
+              each i in [1, 2, 3, 4]
+                .u-col-3
+                  img.transparent.lazyLoad(data-src='http://lorempixel.com/140/140/sports/#{Math.floor(Math.random() * 10)}' width='140' height='140')

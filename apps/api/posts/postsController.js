@@ -16,6 +16,7 @@ router.get('/posts', co.wrap(list));
 router.post('/posts', co.wrap(add));
 
 router.get('/posts/:postId', co.wrap(fetch));
+router.put('/posts/:postId', co.wrap(update));
 
 export default router;
 
@@ -23,7 +24,7 @@ export default router;
  * Post listing
  */
 function *list(ctx, next) {
-  let posts = yield Post.find({}).exec();
+  let posts = yield Post.find({}).sort('-created_at').exec();
   ctx.body = responseFormat(400, posts);
 }
 
@@ -50,8 +51,28 @@ function *add(ctx, next) {
 
   try {
     yield newPost.save();
-    ctx.status = 400;
-    ctx.body = responseFormat(400, null, 'success');
+    ctx.status = 200;
+    ctx.body = responseFormat(200, null, 'success');
+  } catch(err) {
+    ctx.throw(err);
+  }
+}
+
+/**
+ * Update a post
+ */
+function *update(ctx, next) {
+  let body = yield parse.form(ctx);
+  let postId = ctx.params.postId;
+
+  try {
+    let post = yield Post.findOne({ machine_name: postId }).exec();
+    post.title = body.title;
+    post.body = body.body;
+    yield post.save();
+
+    ctx.status = 200;
+    ctx.body = responseFormat(200, post, 'success');
   } catch(err) {
     ctx.throw(err);
   }

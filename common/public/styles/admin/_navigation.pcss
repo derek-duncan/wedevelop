@@ -1,0 +1,24 @@
+.nav {
+  width: calc(var(--width-nav--max) - var(--gutter-medium));
+  margin: 0 auto;
+  padding: var(--gutter-small) var(--gutter-medium);
+}
+
+.nav-item {
+  display: inline-block;
+  margin: 0;
+  padding: 0 var(--gutter-small);
+  font-family: var(--font-sans);
+  font-size: var(--fontSize-small);
+}
+
+.subNav {
+  width: calc(var(--width-nav--max) - var(--gutter-medium));
+  margin: var(--gutter-small) auto 0;
+  padding: 0 var(--gutter-medium);
+  font: var(--fontSize-small) var(--font-sans);
+
+  &:empty {
+    display: none;
+  }
+}

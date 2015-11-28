@@ -1,0 +1,83 @@
+@import '../common/_config.pcss';
+@import './_navigation.pcss';
+
+.topBar {
+
+  &::before {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    content: '';
+  }
+}
+
+.mainContainer {
+  width: var(--width-content--max);
+  margin: var(--gutter-medium) auto 0;
+}
+
+.page-title {
+  font: 200 var(--fontSize-large) var(--font-sans);
+}
+
+.postEdit {
+
+}
+
+.postEdit-form {
+  display: block;
+}
+
+.form {
+  width: 100%;
+}
+
+.form-group {
+  padding: var(--gutter-small);
+}
+
+.form-label {
+  display: block;
+  padding: 0 0 var(--gutter-smaller);
+  font: 500 var(--fontSize-medium) var(--font-sans);
+}
+
+.form-input,
+.form-textarea {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: var(--gutter-small);
+  border: 1px solid var(--color-gray);
+  font: 500 var(--fontSize-medium) var(--font-sans);
+  line-height: var(--lineHeight-base);
+  outline: none;
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+}
+
+.form-input {
+}
+
+.form-textarea {
+  min-height: 30rem;
+}
+
+.button {
+  padding: var(--gutter-smallest) var(--gutter-small);
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  font: 600 var(--fontSize-medium) var(--font-sans);
+  border-radius: 0.4rem;
+  outline: none;
+  transition: background-color var(--transitionSpeed-medium);
+
+  &:hover {
+    background-color: var(--color-primary--dark);
+  }
+}

@@ -12,16 +12,26 @@ const Post = mongoose.model('Post');
 const router = new Router();
 
 // All routes are mounted with the /posts prefix
-router.get('/', co.wrap(list));
+router.get('/', co.wrap(home));
 router.get('/:postId', co.wrap(fetch));
 
 export default router;
 
 /**
+ * Home listing
+ */
+function *home(ctx, next) {
+  let posts = yield Post.find({}).sort('-created_at').limit(1).exec();
+  ctx.body = yield ctx.render('home', {
+    posts: posts
+  });
+}
+
+/**
  * Post listing
  */
 function *list(ctx, next) {
-  let posts = yield Post.find({}).exec();
+  let posts = yield Post.find({}).sort('-created_at').exec();
   ctx.body = yield ctx.render('list', {
     posts: posts
   });

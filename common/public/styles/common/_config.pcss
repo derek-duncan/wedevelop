@@ -26,11 +26,19 @@
   --width-content--max: 62rem;
 
   /* Gutter */
+  --gutter-smallest: 1rem;
   --gutter-smaller: 1.5rem;
   --gutter-small: 2rem;
   --gutter-medium: 3rem;
   --gutter-large: 4.5rem;
   --gutter-larger: 6rem;
+
+  /* Line Height */
+  --lineHeight-tighter: 1.2;
+  --lineHeight-tight: 1.4;
+  --lineHeight-base: 1.6;
+  --lineHeight-loose: 1.8;
+  --lineHeight-looser: 2;
 
   /* Transitions */
   --transitionSpeed-medium: 250ms;
@@ -42,19 +50,6 @@
 }
 
 @import 'normalize.css';
-@import './_universal.pcss';
-@import './_typeography.pcss';
-@import './_images.pcss';
-@import './_grid.pcss';
-@import './_animations.pcss';
-@import './_navigation.pcss';
-@import './_posts.pcss';
-@import './_blocks.pcss';
-@import './_footer.pcss';
-@import './_page.pcss';
-
-/* Pages */
-@import './pages/_home.pcss';
 
 * {
   box-sizing: border-box;
@@ -80,24 +75,4 @@ a {
   &:hover {
     color: var(--color-primary--dark);
   }
-}
-
-.top-bar {
-
-  &::before {
-    position: relative;
-    display: block;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primary);
-    animation: 0.75s 0.25s expandBar ease forwards;
-    content: '';
-  }
-}
-
-.mainContainer {
-  max-width: calc(var(--width-content--max) - 2rem);
-  width: 100%;
-  margin: var(--gutter-medium) auto;
-  padding: 0 var(--gutter-medium);
 }

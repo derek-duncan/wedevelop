@@ -1,0 +1,18 @@
+extends ../templates/default.jade
+
+block subNav
+  a(href='/admin/posts') < return to list
+
+block body
+  .mainContainer
+    article.postEdit
+      h4.page-title New Post
+      form.form.js-form--ajax.postNew-form(action='/api/v1/posts' method='POST' data-redirectURL='/admin/posts')
+        .form-group
+          label.form-label Title
+          input.form-input(type='text' name='title' placeholder='Post title')
+        .form-group
+          label.form-label Body
+          textarea.form-textarea(name='body' placeholder='Post body')
+        .form-group
+          button.button(type='submit') Create

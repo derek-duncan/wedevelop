@@ -14,7 +14,7 @@ var minifyCss = require('gulp-minify-css');
 var path = require('path');
 
 var apps = [{
-  name: 'blog',
+  name: 'common',
   styles: {
     src: [
       './common/public/styles/**/[^_]*.pcss',
@@ -27,11 +27,11 @@ var apps = [{
     ]
   },
   views: {
-    src: './apps/blog/views/**/*.jade'
+    src: './apps/**/*.jade'
   },
   images: {
     src: [
-      './public/img/**/*'
+      './common/public/img/**/*'
     ]
   },
   scripts: {
