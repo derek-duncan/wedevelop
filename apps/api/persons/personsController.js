@@ -45,6 +45,7 @@ function *fetch(ctx, next) {
 function *add(ctx, next) {
   let body = yield parse.form(ctx);
   let newPerson = new Person();
+  newPerson.profile_picture = body.profile_picture;
   newPerson.name = body.name;
   newPerson.short_description = body.short_description;
   try {
@@ -65,6 +66,7 @@ function *update(ctx, next) {
 
   try {
     let person = yield Person.findOne({ _id: personId }).exec();
+    person.profile_picture = body.profile_picture;
     person.name = body.name;
     person.short_description = body.short_description;
     yield person.save();

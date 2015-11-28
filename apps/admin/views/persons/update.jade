@@ -9,6 +9,9 @@ block body
       h4.page-title Update Person
       form.form.js-form--ajax.personEdit-form(action='/api/v1/persons/#{person._id}' method='PUT')
         .form-group
+          label.form-label Profile Picture
+          input.form-input(type='text' name='profile_picture' value=person.profile_picture)
+        .form-group
           label.form-label Name
           input.form-input(type='text' name='name' value=person.name)
         .form-group

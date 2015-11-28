@@ -9,6 +9,9 @@ block body
       h4.page-title Add Person
       form.form.js-form--ajax.personNew-form(action='/api/v1/persons' method='POST' data-redirectURL='/admin/persons')
         .form-group
+          label.form-label Profile Picture
+          input.form-input(type='text' name='profile_picture' placeholder='Profile Picture URL')
+        .form-group
           label.form-label Name
           input.form-input(type='text' name='name' placeholder='Person title')
         .form-group
