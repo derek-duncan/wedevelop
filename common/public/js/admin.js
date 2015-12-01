@@ -89,8 +89,12 @@
 
       var url = button.dataset.url;
 
-      xmlhttp.open('DELETE', url, true);
-      xmlhttp.send();
+      var confirmDelete = confirm('Are you sure?');
+
+      if (confirmDelete) {
+        xmlhttp.open('DELETE', url, true);
+        xmlhttp.send();
+      }
 
       return false;
     }

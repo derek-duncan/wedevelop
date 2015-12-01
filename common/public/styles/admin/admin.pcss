@@ -1,6 +1,10 @@
 @import '../common/_config.pcss';
 @import './_navigation.pcss';
 
+body {
+  font-size: var(--fontSize-medium);
+}
+
 .topBar {
 
   &::before {
@@ -14,16 +18,23 @@
 }
 
 .mainContainer {
-  width: var(--width-content--max);
+  max-width: var(--width-content--max);
+  width: 100%;
   margin: var(--gutter-medium) auto 0;
+  padding: 0 var(--gutter-medium);
+
+  @media (--media-medium--min) {
+    padding: 0;
+  }
 }
 
 .page-title {
   font: 200 var(--fontSize-large) var(--font-sans);
 }
 
-.postEdit {
-
+.list-item {
+  font-size: var(--fontSize-large);
+  margin: 0 0 var(--gutter-small);
 }
 
 .postEdit-form {
@@ -51,7 +62,7 @@
   height: auto;
   padding: var(--gutter-small);
   border: 1px solid var(--color-gray);
-  font: 500 var(--fontSize-medium) var(--font-sans);
+  font: 500 var(--fontSize-medium) var(--font-mono);
   line-height: var(--lineHeight-base);
   outline: none;
 
@@ -68,16 +79,31 @@
 }
 
 .button {
-  padding: var(--gutter-smallest) var(--gutter-small);
-  border: none;
+  display: inline-block;
+  vertical-align: middle;
+  padding: var(--gutter-smaller) var(--gutter-small);
+  border: 1px solid var(--color-primary);
   background-color: var(--color-primary);
   color: #fff;
   font: 600 var(--fontSize-medium) var(--font-sans);
+  line-height: 1;
   border-radius: 0.4rem;
   outline: none;
-  transition: background-color var(--transitionSpeed-medium);
+  transition: background-color var(--transitionSpeed-medium), color var(--transitionSpeed-medium);
 
   &:hover {
+    border-color: var(--color-primary--dark);
     background-color: var(--color-primary--dark);
+  }
+}
+
+.button--outline {
+  background-color: #fff;
+  color: var(--color-primary);
+
+  &:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #fff;
   }
 }

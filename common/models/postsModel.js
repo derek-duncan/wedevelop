@@ -11,6 +11,7 @@ let PostSchema = new Schema({
   _id: { type: String, default: shortid.generate },
   machine_name: { type: String },
   person: { type: String, ref: 'Person' },
+  feature_picture: { type: String },
   title: { type: String },
   body: { type: String },
   body_html: { type: String },

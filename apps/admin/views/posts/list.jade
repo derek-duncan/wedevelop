@@ -9,7 +9,7 @@ block body
     h2 All posts
     if posts.length
       each post in posts
-        h4
+        p.list-item
           a(href='/admin/posts/#{post.machine_name}')= post.title
     else
       p No posts yet

@@ -8,6 +8,7 @@ block body
     article.postView
       header.postView-header
         h1.postView-title.u-rule= post.title
+        img.postView-featuredPicture.lazyLoad.transparent(data-src=post.feature_picture width='360' height='200')
       div.postView-body
         .postView-content
           span.dropCap L

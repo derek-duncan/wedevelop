@@ -46,6 +46,7 @@ function *fetch(ctx, next) {
 function *add(ctx, next) {
   let body = yield parse.form(ctx);
   let newPost = new Post();
+  newPost.feature_picture = body.feature_picture;
   newPost.title = body.title;
   newPost.body = body.body;
   newPost.person = body.person;
@@ -68,6 +69,7 @@ function *update(ctx, next) {
 
   try {
     let post = yield Post.findOne({ machine_name: postId }).exec();
+    post.feature_picture = body.feature_picture;
     post.title = body.title;
     post.body = body.body;
     post.person = body.person;

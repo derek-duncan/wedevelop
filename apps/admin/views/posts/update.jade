@@ -17,9 +17,12 @@ block body
           label.form-label Title
           input.form-input(type='text' value=post.title name='title')
         .form-group
+          label.form-label Feature Picture
+          input.form-input(type='text' name='feature_picture' placeholder='Featured photo path' value=post.feature_picture)
+        .form-group
           label.form-label Body
           textarea.form-textarea(name='body')= post.body
         .form-group
           button.button(type='submit') Update
-      button.button.js-button--delete(data-url='/api/v1/posts/#{post._id}' data-redirectURL='/admin/posts') Delete
+      button.button.button--outline.js-button--delete(data-url='/api/v1/posts/#{post._id}' data-redirectURL='/admin/posts') Delete
 

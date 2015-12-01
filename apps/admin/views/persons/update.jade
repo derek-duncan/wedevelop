@@ -19,4 +19,4 @@ block body
           input.form-input(type='text' name='short_description' value=person.short_description)
         .form-group
           button.button(type='submit') Update
-      button.button.js-button--delete(data-url='/api/v1/persons/#{person._id}' data-redirectURL='/admin/persons') Delete
+      button.button.button--outline.js-button--delete(data-url='/api/v1/persons/#{person._id}' data-redirectURL='/admin/persons') Delete

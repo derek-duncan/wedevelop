@@ -1,0 +1,45 @@
+.placeholder-avatar {
+  overflow: hidden;
+  height: 10rem;
+  width: 10rem;
+  margin: 0 auto var(--gutter-smallish);
+  border-radius: 50%;
+  background-color: var(--color-white--off);
+}
+
+.placeholder-lines {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.placeholder-line {
+  height: 1rem;
+  width: 100%;
+  margin: var(--gutter-small) auto;
+  background-color: var(--color-white--off);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Sizes */
+  &:nth-of-type(1) {
+    width: 100%;
+  }
+
+  &:nth-of-type(2) {
+    width: 90%;
+  }
+
+  &:nth-of-type(3) {
+    width: 80%;
+  }
+
+  &:nth-of-type(4) {
+    width: 85%;
+  }
+}

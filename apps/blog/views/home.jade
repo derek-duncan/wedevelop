@@ -28,6 +28,15 @@ block body
                 .authorFeature-body
                   h4.authorFeature-name= post.person.name
                   p.authorFeature-description= post.person.short_description
+            - var n = 0
+            while postFeatures.length && n < (3 - postFeatures.length)
+              - n++
+              .authorFeature.u-col-4.authorFeature--placeholder.placeholder
+                .placeholder-avatar
+                .placeholder-lines
+                  .placeholder-line
+                  .placeholder-line
+                  .placeholder-line
 
     hr.u-separator
 

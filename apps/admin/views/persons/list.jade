@@ -9,7 +9,7 @@ block body
     h2 All People
     if persons.length
       each person in persons
-        h4
+        p.list-item
           a(href='/admin/persons/#{person._id}')= person.name
     else
       p No people yet
